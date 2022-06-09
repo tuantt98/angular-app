@@ -4,7 +4,7 @@
     <hr>
   </div>
   <div class="col-xs-12">
-    <app-recipe-item *ngFor="let recipeEl of recipes" [recipe]="recipeEl">
+    <app-recipe-item *ngFor="let recipeEl of recipes; let i=index" [recipe]="recipeEl" [index]="i+1">
     </app-recipe-item>
   </div>
 </div>

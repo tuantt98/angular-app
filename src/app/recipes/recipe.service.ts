@@ -21,7 +21,7 @@ export class RecipeService {
     new Recipe(
       'Another Test Recipe',
       'This is simply a test',
-      'https://www.simplyrecipes.com/thmb/JWjdE8YwikAae0KZuyy6ZJW7Utw=/3000x2001/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Homemade-Pizza-Dough-Lead-Shot-1c-c2b1885d27d4481c9cfe6f6286a64342.jpg',
+      'https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-articleLarge.jpg',
       [
         new Ingredient('Buns', 2),
         new Ingredient('Meat', 1)
@@ -39,4 +39,7 @@ export class RecipeService {
     this.slService.addIngredients(ingredients);
   }
 
+  getRecipe(id: number): (Recipe | null | undefined) {
+    return this.recipes[id];
+  }
 }
