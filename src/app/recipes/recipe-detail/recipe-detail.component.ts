@@ -11,12 +11,14 @@ import { RecipeService } from '../recipe.service';
 })
 export class RecipeDetailComponent implements OnInit {
   recipe: Recipe = new Recipe('', '', '', []);
+  id: number | undefined;
 
   constructor(private recipeService: RecipeService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const id = params['id'];
+      this.id = id - 1;
       const result = this.recipeService.getRecipe(id - 1);
       if (!result) {
         // redirect to /recipes
@@ -34,7 +36,14 @@ export class RecipeDetailComponent implements OnInit {
     alert("Added ingredients to shopping list successfully!");
   }
 
-  onEditRecipe(){
+  onEditRecipe() {
     this.router.navigate(['edit'], { relativeTo: this.route });
+  }
+
+  onDeleteRecipe() {
+    if (this.id === 0 || this.id) {
+      this.recipeService.deleteRecipe(this.id);
+      this.router.navigate(['/recipes'], { relativeTo: this.route });
+    }
   }
 }
