@@ -13,8 +13,8 @@
         <li class="dropdown" appDropdown>
           <a class="dropdown-toggle" role="button">Manager <span class="caret"></span> </a>
           <ul class="dropdown-menu">
-            <li><a class="cursor">Save data</a></li>
-            <li><a class="cursor">Fetch data</a></li>
+            <li><a class="cursor" (click)="onSaveData()">Save data</a></li>
+            <li><a class="cursor" (click)="onFetchData()">Fetch data</a></li>
           </ul>
         </li>
       </ul>

@@ -8,27 +8,7 @@ import { ShoppingListService } from "../shopping-list/shopping-list.service";
 @Injectable()
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
-
-  private recipes: Recipe[] = [
-    new Recipe(
-      'A Test Recipe',
-      'This is simply a test',
-      'https://cdn.pixabay.com/photo/2016/06/15/19/09/food-1459693_960_720.jpg',
-      [
-        new Ingredient('Meat', 1),
-        new Ingredient('French Fries', 20)
-      ]
-    ),
-    new Recipe(
-      'Another Test Recipe',
-      'This is simply a test',
-      'https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-articleLarge.jpg',
-      [
-        new Ingredient('Buns', 2),
-        new Ingredient('Meat', 1)
-      ]
-    ),
-  ];
+  private recipes: Recipe[] = []
 
   constructor(private slService: ShoppingListService) {
     this.recipesChanged.next(this.recipes.slice());
@@ -36,6 +16,11 @@ export class RecipeService {
 
   getRecipes(): Recipe[] {
     return this.recipes.slice();
+  }
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes
+    this.recipesChanged.next(this.recipes.slice());
   }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
